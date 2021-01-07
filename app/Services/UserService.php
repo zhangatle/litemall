@@ -20,6 +20,15 @@ use Overtrue\EasySms\PhoneNumber;
 class UserService extends BaseService
 {
     /**
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
+     */
+    public function getUserById($id)
+    {
+        return User::query()->find($id);
+    }
+
+    /**
      * 根据用户名查找用户
      * @param $username
      * @return Builder|Model|object|null

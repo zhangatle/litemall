@@ -26,31 +26,31 @@ class CodeResponse
     const AUTH_OPENID_UNACCESS = [7008, 'openid无效'];
     const AUTH_OPENID_BINDED = [7009, 'openid已被绑定'];
 
-    const GOODS_UNSHELVE = 710;
-    const GOODS_NO_STOCK = 711;
-    const GOODS_UNKNOWN = 712;
-    const GOODS_INVALID = 713;
+    const GOODS_UNSHELVE = [710, '商品已经下架!'];
+    const GOODS_NO_STOCK = [711, '商品库存不足!'];
+    const GOODS_UNKNOWN  = [712, ''];
+    const GOODS_INVALID  = [713, ''];
 
-    const ORDER_UNKNOWN = 720;
-    const ORDER_INVALID = 721;
-    const ORDER_CHECKOUT_FAIL = 722;
-    const ORDER_CANCEL_FAIL = 723;
-    const ORDER_PAY_FAIL = 724;
+    const ORDER_UNKNOWN       = [720, '订单不存在'];
+    const ORDER_INVALID       = [721, ''];
+    const ORDER_CHECKOUT_FAIL = [722, ''];
+    const ORDER_CANCEL_FAIL   = [723, ''];
+    const ORDER_PAY_FAIL      = [724, ''];
 
-    const ORDER_INVALID_OPERATION = 725;
-    const ORDER_COMMENTED = 726;
-    const ORDER_COMMENT_EXPIRED = 727;
+    const ORDER_INVALID_OPERATION = [725, ''];
+    const ORDER_COMMENTED         = [726, ''];
+    const ORDER_COMMENT_EXPIRED   = [727, ''];
 
-    const GROUPON_EXPIRED = 730;
-    const GROUPON_OFFLINE = 731;
-    const GROUPON_FULL = 732;
-    const GROUPON_JOIN = 733;
+    const GROUPON_EXPIRED = [730, '团购已过期!'];
+    const GROUPON_OFFLINE = [731, '团购已下线!'];
+    const GROUPON_FULL    = [732, '参团人数已满!'];
+    const GROUPON_JOIN    = [733, '团购活动已经参加!'];
 
-    const COUPON_EXCEED_LIMIT = 740;
-    const COUPON_RECEIVE_FAIL = 741;
-    const COUPON_CODE_INVALID = 742;
+    const COUPON_EXCEED_LIMIT = [740, '优惠券已领完'];
+    const COUPON_RECEIVE_FAIL = [741, ''];
+    const COUPON_CODE_INVALID = [742, ''];
 
-    const AFTERSALE_UNALLOWED = 750;
-    const AFTERSALE_INVALID_AMOUNT = 751;
-    const AFTERSALE_INVALID_STATUS = 752;
+    const AFTERSALE_UNALLOWED      = [750, ''];
+    const AFTERSALE_INVALID_AMOUNT = [751, ''];
+    const AFTERSALE_INVALID_STATUS = [752, ''];
 }
