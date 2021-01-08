@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\util\CodeResponse;
 use App\util\ValidateRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,5 +81,50 @@ class WxController extends Controller
     public function userId()
     {
         return $this->user()->getAuthIdentifier();
+    }
+
+    /**
+     * @param $page
+     * @param null $list
+     * @return JsonResponse
+     */
+    public function successPaginate($page, $list = null): JsonResponse
+    {
+        return $this->success($this->paginate($page, $list));
+    }
+
+    /**
+     * @param $page
+     * @param null $list
+     * @return array|mixed
+     */
+    protected function paginate($page, $list = null): array
+    {
+        if ($page instanceof LengthAwarePaginator) {
+            return [
+                'total' => $page->total(),
+                'page'  => $page->total() == 0 ? 0 : $page->currentPage(),
+                'limit' => $page->perPage(),
+                'pages' => $page->total() == 0 ? 0 : $page->lastPage(),
+                'list'  => $list ?? $page->items()
+            ];
+        }
+
+        if ($page instanceof Collection) {
+            $page = $page->toArray();
+        }
+
+        if (!is_array($page)) {
+            return $page;
+        }
+
+        $total = count($page);
+        return [
+            'total' => $total,
+            'page'  => 0,
+            'limit' => $total,
+            'pages' => 0,
+            'list'  => $page
+        ];
     }
 }

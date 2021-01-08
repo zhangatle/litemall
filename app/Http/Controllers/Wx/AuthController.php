@@ -104,6 +104,7 @@ class AuthController extends WxController
         if(empty($username) || empty($password)) {
             return $this->fail(CodeResponse::INVALID_PARAM);
         }
+        /** @var User $user */
         $user = UserService::getInstance()->getByUsername($username);
         if(is_null($user)) {
             return $this->fail(CodeResponse::AUTH_INVALID_ACCOUNT);

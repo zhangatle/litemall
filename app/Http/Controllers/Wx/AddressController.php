@@ -13,7 +13,7 @@ class AddressController extends WxController
 {
     public function list(Request $request): JsonResponse
     {
-        $list = AddressService::getAddressByUserId($this->userId());
+        $list = AddressService::getInstance()->getAddressByUserId($this->userId());
         return $this->success([
             'total' => $list->count(),
             'page' => 1,
@@ -30,7 +30,7 @@ class AddressController extends WxController
     public function detail(Request $request): JsonResponse
     {
         $id = $this->verifyId('id', 0);
-        $address = AddressService::getUserAddress($this->userId(), $id);
+        $address = AddressService::getInstance()->getUserAddress($this->userId(), $id);
         if(is_null($address)) {
             return $this->fail(CodeResponse::INVALID_PARAM);
         }
@@ -45,7 +45,7 @@ class AddressController extends WxController
     public function save(AddressSaveRequest $request): JsonResponse
     {
         $userId = $this->userId();
-        AddressService::saveAddress($userId, $request);
+        AddressService::getInstance()->saveAddress($userId, $request);
         return $this->success();
     }
 
@@ -57,7 +57,7 @@ class AddressController extends WxController
     public function delete(Request $request): JsonResponse
     {
         $id = $this->verifyInteger('id');
-        AddressService::delete($this->userId(), $id);
+        AddressService::getInstance()->delete($this->userId(), $id);
         return $this->success();
     }
 }
